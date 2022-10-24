@@ -5,9 +5,6 @@ import json
 import dateutil.parser
 import time
 
-mdp = input("Entrez le mdp")
-
-client = MongoClient("mongodb+srv://Molia:" + mdp + "@cluster0.dx5zp1v.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
 
 db = client.vls
 
