@@ -1,6 +1,7 @@
 import vrennes
 import dateutil.parser
 
+# gets data from the city json
 def data_rennes():
     rennes_data = vrennes.get_rennes()
     datas = [
@@ -11,10 +12,11 @@ def data_rennes():
             "station_id": elem.get('fields', {}).get('idstation'),
             "etat": elem.get('fields', {}).get('etat'),
             "lat/lon": elem.get('fields', {}).get('coordonnees'),
-            "last_update": dateutil.parser.parse(elem.get('fields', {}).get('lastupdate'))
+            "last_update": dateutil.parser.parse(elem.get('fields', {}).get('lastupdate')),
+            "city": "Rennes"
         }
         for elem in rennes_data
     ]
     return datas
 
-print(data_rennes())
+# print(data_rennes())

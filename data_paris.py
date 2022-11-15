@@ -1,6 +1,8 @@
 import vparis
 import dateutil.parser
 
+# gets data from the city jsons
+
 def data_info_paris():
     paris_info = vparis.get_paris_info()
     paris_stats = vparis.get_paris_status()
@@ -11,7 +13,8 @@ def data_info_paris():
             "capacity": elem['capacity'],
             "lattitude": elem['lat'],
             "longitude": elem['lon'],
-            "name": elem['name']
+            "name": elem['name'],
+            "city": "Paris"
         }
         for elem in paris_info['stations']
     ]
@@ -27,7 +30,7 @@ def data_stats_paris():
             "stand_available": elem['num_docks_available'],
             "is_installed": elem['is_installed'],
             "is_renting": elem['is_renting'],
-            "is_returning": elem["is_returning"]
+            "is_returning": elem["is_returning"],
         }
         for elem in paris_stats['stations']
     ]

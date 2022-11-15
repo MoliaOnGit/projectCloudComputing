@@ -5,6 +5,10 @@ import json
 import dateutil.parser
 import time
 import vlille
+import data_lille
+import data_lyon
+import data_rennes
+import data_paris
 
 mdp = input("Entrez le mdp:\n")
 client = MongoClient("mongodb+srv://Molia:" + mdp + "@cluster0.dx5zp1v.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
@@ -33,22 +37,15 @@ try:
 except:
     pass
 
+# get data
+L = [data_lille.data_lille(), data_rennes.data_rennes(), data_lyon.merge_data_lyon(), data_paris.merge_data_paris()]
 
-
+# update 
 while True:
-    print('update')
-    vlilles = vlille.get_vlille()
-    datas = [
-        {
-            "bike_available": elem.get('fields', {}).get('nbvelosdispo'),
-            "stand_available": elem.get('fields', {}).get('nbplacesdispo'),
-            "date": dateutil.parser.parse(elem.get('fields', {}).get('datemiseajour')),
-            "station_id": elem.get('fields', {}).get('libelle')
-        }
-        for elem in vlilles
-    ]
-    
-    for data in datas:
-        db.datas.update_one({'date': data["date"], "station_id": data["station_id"]}, { "$set": data }, upsert=True)
+    for func in L:
+        datas = func        
+        for data in datas:
+            print("updating")
+            db.datas.update_one({'city': data["city"], "station_id": data["station_id"]}, { "$set": data }, upsert=True)  
 
     time.sleep(10)

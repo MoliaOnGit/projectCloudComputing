@@ -1,6 +1,8 @@
 import vlyon
 import dateutil.parser
 
+# gets data from the city jsons
+
 def data_info_lyon():
     lyon_info = vlyon.get_vlyon_info()
     lyon_stats = vlyon.get_vlyon_status()
@@ -11,7 +13,8 @@ def data_info_lyon():
             "capacity": elem['capacity'],
             "lattitude": elem['lat'],
             "longitude": elem['lon'],
-            "name": elem['name']
+            "name": elem['name'],
+            "city": "Lyon"
         }
         for elem in lyon_info['stations']
     ]
@@ -45,4 +48,4 @@ def merge_data_lyon():
                 break
     return data_final
 
-print(merge_data_lyon())
+# print(merge_data_lyon())
