@@ -1,26 +1,16 @@
-import vlille
+import stationsLille,stationsLyon,stationsParis,stationsRennes
 
 def init(db):
-    vlilles = vlille.get_vlille()
-    vlilles_to_insert = [
-    {
-        '_id': elem.get('fields', {}).get('libelle'),
-        'name': elem.get('fields', {}).get('nom', '').title(),
-        'geometry': elem.get('geometry'),
-        'size': elem.get('fields', {}).get('nbvelosdispo') + elem.get('fields', {}).get('nbplacesdispo'),
-        'source': {
-            'dataset': 'Lille',
-            'id_ext': elem.get('fields', {}).get('libelle')
-        },
-        'tpe': elem.get('fields', {}).get('type', '') == 'AVEC TPE'
-    }
-    for elem in vlilles
-    ]
+    stations = []
+    stations.append(stationsLille.init())
+    stations.append(stationsLyon.init())
+    stations.append(stationsParis.init())
+    stations.append(stationsRennes.init())
 
     try: 
-        db.stations.insert_many(vlilles_to_insert, ordered=False)
+        for i in stations:
+            db.stations.insert_many(i, ordered=False)
         print("Database initialized")
     except Exception as e:
-        print("An error occurred\n")
-        print( str(e)[0:30]+"...")
+        print("An error occurred during init\n")
         pass
