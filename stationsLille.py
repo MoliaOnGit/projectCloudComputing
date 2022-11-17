@@ -9,6 +9,7 @@ def init():
         'loc':elem.get('geometry'),
         'size': elem.get('fields', {}).get('nbvelosdispo') + elem.get('fields', {}).get('nbplacesdispo'),
         'ville': 'lille',
+        'status' : "activated"
     }
     for elem in vlilles
     ]

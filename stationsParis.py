@@ -10,6 +10,7 @@ def init():
             'loc':{'type': "Point", 'coordinates': [elem.get('lon'),elem.get('lat')]} ,
             'size':elem.get('capacity'),
             'ville':'paris',
+            'status' : "activated"
         }
         for elem in vpariss
     ]

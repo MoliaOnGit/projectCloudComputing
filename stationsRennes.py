@@ -10,6 +10,7 @@ def init():
             'loc': elem.get('geometry'),
             'size': elem.get('fields', {}).get('nombreemplacementsactuels'),
             'ville': 'rennes',
+            'status' : "activated"
         }
         for elem in vrenness
     ]
