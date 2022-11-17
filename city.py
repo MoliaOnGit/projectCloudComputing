@@ -62,7 +62,7 @@ def desactivate():
         for i in station:
             db.stations.update_one({'_id' : i['_id']},{'$set': {'status' : "desactivated"}})
 
-#search("Porte")
+search("foch")
 #delete()
 #update()
 #desactivate()
