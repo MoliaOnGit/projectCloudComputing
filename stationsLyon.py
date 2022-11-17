@@ -7,8 +7,7 @@ def init():
         {
             '_id': int(elem.get('station_id')) + CONST.__OFFSETLYON__,
             'name': elem.get('name'),
-            'long': elem.get('lon'),
-            'lat': elem.get('lat'),
+            'loc':{'type': "Point", 'coordinates': [elem.get('lon'),elem.get('lat')]} ,
             'size':elem.get('capacity'),
             'ville':'lyon',
         }
