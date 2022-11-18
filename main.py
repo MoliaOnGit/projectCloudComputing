@@ -5,14 +5,18 @@ import init
 import update
 import time
 
-mdp = input("Entrez le mdp:\n")
-client = MongoClient("mongodb+srv://Molia:" + mdp + "@cluster0.dx5zp1v.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-db = client.vls
+def main():
+    mdp = input("Entrez le mdp:\n")
+    client = MongoClient("mongodb+srv://Molia:" + mdp + "@cluster0.dx5zp1v.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
+    db = client.vls
 
-#Initialization
-init.init(db)
+    #Initialization
+    init.init(db)
 
-#Update
-while True:
-    update.update(db)
-    time.sleep(10)
+    #Update
+    while True:
+        update.update(db)
+        time.sleep(10)
+
+if __name__ == "__main__":
+    main()
